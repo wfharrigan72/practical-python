@@ -1,19 +1,14 @@
 # pcost.py
 #
 # Exercise 1.27
-import sys
-
-if len(sys.argv) == 2:
-    filename = sys.argv[1]
-else:
-    filename = 'Data/portfolio.csv'
+import csv
 running_total = 0
 
-f = open(filename, 'rt')
-headers = next(f).split(',')
+f = open('Data/portfolio.csv')
+rows = csv.reader(f)
+headers = next(rows)
 
-for line in f:
-    this_line = line.split(',')
+for this_line in rows:
     shares = int(this_line[1])
     cost = float(this_line[2])
     line_total = shares * cost
